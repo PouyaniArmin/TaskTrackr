@@ -1,0 +1,1 @@
+{"version":1,"defects":{"RequestTest::testInValidPath":8,"RequestTest::testSqlInjectionPath":7,"RequestTest::testValidPath":8},"times":{"RequestTest::testPath":0.007,"RequestTest::testValidPath":0.004,"RequestTest::testInValidPath":0.002,"RequestTest::testSqlInjectionPath":0,"RequestTest::testXssPath":0}}
