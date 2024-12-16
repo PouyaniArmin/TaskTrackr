@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php"
+         colors="true"
+         verbose="true">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+    <listeners>
+        <listener class="PHPUnit\TextUI\ResultPrinter" file="vendor/phpunit/phpunit/src/TextUI/ResultPrinter.php"/>
+    </listeners>
+    <extensions>
+        <extension class="PHPUnit\Util\Log\JUnit" />
+    </extensions>
+</phpunit>
