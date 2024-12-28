@@ -72,6 +72,7 @@ class RouterTest extends TestCase
             return 'test';
         });
         $response = $this->router->resolve();
-        $this->assertEquals('not found', $response);
+        $expectedContent = file_get_contents(__DIR__.'/../app/views/notFound.php');
+        $this->assertStringContainsString($expectedContent, $response);
     }
 }
