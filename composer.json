@@ -4,7 +4,8 @@
             "App\\":"app/",
             "App\\Controllres\\":"app/controllres/",
             "App\\Models\\":"app/models/",
-            "App\\Core\\":"app/core/"
+            "App\\Core\\":"app/core/",
+            "App\\Core\\Middleware\\":"app/core/middleware/"
         }
     },
     "require": {
