@@ -27,6 +27,24 @@ class Router
         // Add the POST route to the router array with its callback and optional middlewares
         $this->router['post'][$path] = ['callback' => $callback, 'middlewares' => $middlewares];
     }
+     // Method to add a POST route to the router
+     public function put($path, $callback, array $middlewares = [])
+     {
+         // Add the POST route to the router array with its callback and optional middlewares
+         $this->router['put'][$path] = ['callback' => $callback, 'middlewares' => $middlewares];
+     }
+      // Method to add a POST route to the router
+    public function patch($path, $callback, array $middlewares = [])
+    {
+        // Add the POST route to the router array with its callback and optional middlewares
+        $this->router['patch'][$path] = ['callback' => $callback, 'middlewares' => $middlewares];
+    }
+     // Method to add a POST route to the router
+     public function delete($path, $callback, array $middlewares = [])
+     {
+         // Add the POST route to the router array with its callback and optional middlewares
+         $this->router['delete'][$path] = ['callback' => $callback, 'middlewares' => $middlewares];
+     }
     // Method to execute the callback for the matched route with parameters
     public function resolve()
     {
