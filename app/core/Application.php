@@ -9,9 +9,11 @@ class Application
     public Router $router;
     public static Application $app;
     public Controller $controller;
-    public function __construct(Router $router)
+    public static string $ROOTPATH;
+    public function __construct(string $rootPath,Router $router)
     {
         self::$app = $this;
+        self::$ROOTPATH=$rootPath;
         $this->router = $router;
     }
     public function getController(): Controller
