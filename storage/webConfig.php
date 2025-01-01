@@ -5,12 +5,10 @@ use App\Core\Application;
 use App\Core\Middleware\AdminMiddleware;
 use App\Core\Request;
 use App\Core\Router;
-use App\Database\DB;
 
 
 $request = new Request;
 $app = new Application(dirname(__DIR__),new Router($request));
-new DB;
 $app->router->get('/', [HomeController::class, 'index']);
 
 $app->router->get('/homes/{id}', [HomeController::class,'test']);
