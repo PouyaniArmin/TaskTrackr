@@ -90,12 +90,13 @@ class DB
     {
         if (!$this->tableExists('users')) {
             $query = "CREATE TABLE users (
-                     id INT AUTO_INCREMENT PRIMARY KEY,
-                     username VARCHAR(255) NOT NULL,
-                     email VARCHAR(255) UNIQUE NOT NULL,
-                     password VARCHAR(255) NOT NULL,
-                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);";
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            email VARCHAR(255) UNIQUE NOT NULL,
+            password VARCHAR(255) DEFAULT NULL,
+            google_id VARCHAR(255) UNIQUE,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return true;
@@ -129,15 +130,19 @@ class DB
     {
         if (!$this->tableExists('tasks')) {
             $query = "CREATE TABLE tasks (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
-                        title VARCHAR(255) NOT NULL,
-                        description TEXT,
-                        due_date DATETIME,
-                        status ENUM('pending', 'in progress', 'completed') DEFAULT 'pending',
-                        priority_level_id INT,
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                        FOREIGN KEY (priority_level_id) REFERENCES priority_levels(id));";
+                id INT(11) AUTO_INCREMENT PRIMARY KEY,
+                title VARCHAR(255) NOT NULL,
+                description TEXT,
+                due_date DATETIME DEFAULT NULL,
+                status ENUM('pending', 'in progress', 'completed') DEFAULT 'pending',
+                user_id INT(11) NOT NULL,
+                priority_level_id INT(11) DEFAULT NULL,
+                category_id INT(11) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (priority_level_id) REFERENCES priority_levels(id),
+                FOREIGN KEY (category_id) REFERENCES categories(id));";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return true;
