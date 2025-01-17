@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\middleware\AdminMiddleware;
+use App\Database\DB;
 
 class Application
 {
@@ -10,11 +11,14 @@ class Application
     public static Application $app;
     public Controller $controller;
     public static string $ROOTPATH;
-    public function __construct(string $rootPath,Router $router)
+
+    public function __construct(string $rootPath, Router $router)
     {
         self::$app = $this;
-        self::$ROOTPATH=$rootPath;
+        self::$ROOTPATH = $rootPath;
         $this->router = $router;
+        new DB;
+        session_start();
     }
     public function getController(): Controller
     {
