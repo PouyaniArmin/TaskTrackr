@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Core\Model;
+use App\Core\SessionManager;
 
 class Users extends Model
 {
@@ -12,7 +13,12 @@ class Users extends Model
     }
     public function getUsersById($id)
     {
-        return $this->selecBytId('users',$id);
+        return $this->selecById('users', $id);
+    }
+
+    public function getUsersByEmail($email)
+    {
+        return $this->selecBy('users', 'email', $email);
     }
     public function insertToUsers($data)
     {
@@ -25,5 +31,15 @@ class Users extends Model
     public function deleteUserById($id)
     {
         $this->deleteById('users', $id);
+    }
+    public function login($email, $password)
+    {
+        $data = $this->selecBy('users', 'email', $email);
+        if ($data) {
+            if (password_verify($password, $data[0]['password'])) {
+                return $data[0];
+            }
+        }
+        return null;
     }
 }
