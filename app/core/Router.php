@@ -83,6 +83,7 @@ class Router
                 return call_user_func($callback, $matches[0]);
             }
         }
+        
         return $this->renderView('notFound');
     }
     // Method to execute the callback for the matched route with parameters
@@ -113,7 +114,7 @@ class Router
     // Method to render the layout view
     private function renderLayout()
     {
-        $main = Application::$app->controller->layout ?? '';
+        $main = Application::$app->controller->layout ?? 'main';
         ob_start();
         require_once __DIR__ . '/../views/layouts/'.$main.'.php';
         return ob_get_clean();
