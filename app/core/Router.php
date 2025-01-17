@@ -115,7 +115,7 @@ class Router
     {
         $main = Application::$app->controller->layout ?? '';
         ob_start();
-        require_once __DIR__ . '/../views/layouts/main.php';
+        require_once __DIR__ . '/../views/layouts/'.$main.'.php';
         return ob_get_clean();
     }
     // Method to render only the content view

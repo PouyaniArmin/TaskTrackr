@@ -56,6 +56,10 @@ class Validator
                 }
             }
         }
+        if (!empty($errors)) {
+            SessionManager::set('errors', $errors);
+        }
+        
         return $errors; // Return all errors if there are any
     }
     /** 
